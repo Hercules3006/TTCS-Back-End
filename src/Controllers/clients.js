@@ -30,7 +30,7 @@ const clientsController = {
         const id = body.token.split(".")[0];
         const client = await clientsService.getClientById(id);
         if(client === null) return ResponseObj(300, Constants.client_not_found, null);
-        if(!client.active) return ResponseObj(300, "Account is not active", null);
+        // if(!client.active) return ResponseObj(300, "Account is not active", null);
         if(client.token !== body.token) return ResponseObj(300, "Token is not correct", null);
         if(!TokenService.checkTokenExpiry(body.token)) return ResponseObj(300, "Token is expired", null);
         const rs = {
